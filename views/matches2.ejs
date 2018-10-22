@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+
+
+	</head>
+
+	<body>
+	    <h1> Result Page </h1>
+	    <p><strong> A list of matches </strong></p>
+	        
+	      <% if (result.length > 0) { %>  
+	        <% result.forEach(function (usersname){ %>
+	     	  
+	            <p>First Name: <%= usersname.firstname %></p>
+	            <p>Last Name: <%= usersname.lastname %></p>
+	            <p>Email: <%= usersname.email %></p> <br>
+        	<% }); %>
+
+	        <% } else { %>
+	          <h2>User not found</h2>
+	  	    <% }; %>
+
+	</body>
+</html>
