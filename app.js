@@ -62,6 +62,31 @@ app.post('/search', function(request, response) {
 	})
 });
 
+//live search
+// Part 1: Autocomplete
+// Modify your form so that every time the user enters a key, it makes an AJAX call that populates the search results.
+
+app.post('/suggestionFinder', function(req,res){
+	//var suggest = ''
+	fs.readFile('./users.json', function (error, data) {
+		if (error) {
+			console.log("error");
+		}
+		const parsedData = JSON.parse(data);
+        const result = [];
+
+            for (let i = 0; i < parsedData.length; i++) {
+                if (parsedData[i].firstname.indexOf(req.body.input) > -1
+                    || parsedData[i].lastname.indexOf(req.body.input) > -1 === req.body.input) {
+                    result.push(parsedData[i]);
+                    console.log(result);
+                }
+            }
+        res.send(result);
+    })
+});
+        
+
 // I create a new ejs file to display the matching users 
 app.get('/matches2', function(request, response) {
 	response.render('matches2');
